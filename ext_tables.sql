@@ -3,8 +3,8 @@
 # Table structure for table 'index_phash'
 #
 CREATE TABLE index_phash (
-  phash int(11) DEFAULT '0' NOT NULL,
-  phash_grouping int(11) DEFAULT '0' NOT NULL,
+  phash bigint(20) DEFAULT '0' NOT NULL,
+  phash_grouping bigint(20) DEFAULT '0' NOT NULL,
   static_page_arguments blob,
   data_filename varchar(1024) DEFAULT '' NOT NULL,
   data_page_id int(11) unsigned DEFAULT '0' NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE index_phash (
   item_mtime int(11) DEFAULT '0' NOT NULL,
   tstamp int(11) unsigned DEFAULT '0' NOT NULL,
   item_size int(11) DEFAULT '0' NOT NULL,
-  contentHash int(11) DEFAULT '0' NOT NULL,
+  contentHash bigint(20) DEFAULT '0' NOT NULL,
   crdate int(11) DEFAULT '0' NOT NULL,
   parsetime int(11) DEFAULT '0' NOT NULL,
   sys_language_uid int(11) DEFAULT '0' NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE index_phash (
 # Table structure for table 'index_fulltext'
 #
 CREATE TABLE index_fulltext (
-  phash int(11) DEFAULT '0' NOT NULL,
+  phash bigint(20) DEFAULT '0' NOT NULL,
   fulltextdata mediumtext,
   metaphonedata mediumtext NOT NULL,
   PRIMARY KEY (phash)
@@ -45,8 +45,8 @@ CREATE TABLE index_fulltext (
 # Table structure for table 'index_rel'
 #
 CREATE TABLE index_rel (
-  phash int(11) DEFAULT '0' NOT NULL,
-  wid int(11) DEFAULT '0' NOT NULL,
+  phash bigint(20) DEFAULT '0' NOT NULL,
+  wid bigint(20) DEFAULT '0' NOT NULL,
   count tinyint(3) unsigned DEFAULT '0' NOT NULL,
   first int(11) unsigned DEFAULT '0' NOT NULL,
   freq smallint(5) unsigned DEFAULT '0' NOT NULL,
@@ -59,9 +59,9 @@ CREATE TABLE index_rel (
 # Table structure for table 'index_words'
 #
 CREATE TABLE index_words (
-  wid int(11) DEFAULT '0' NOT NULL,
+  wid bigint(20) DEFAULT '0' NOT NULL,
   baseword varchar(60) DEFAULT '' NOT NULL,
-  metaphone int(11) DEFAULT '0' NOT NULL,
+  metaphone bigint(20) DEFAULT '0' NOT NULL,
   is_stopword tinyint(3) DEFAULT '0' NOT NULL,
   PRIMARY KEY (wid),
   KEY baseword (baseword),
@@ -72,8 +72,8 @@ CREATE TABLE index_words (
 # Table structure for table 'index_section'
 #
 CREATE TABLE index_section (
-  phash int(11) DEFAULT '0' NOT NULL,
-  phash_t3 int(11) DEFAULT '0' NOT NULL,
+  phash bigint(20) DEFAULT '0' NOT NULL,
+  phash_t3 bigint(20) DEFAULT '0' NOT NULL,
   rl0 int(11) unsigned DEFAULT '0' NOT NULL,
   rl1 int(11) unsigned DEFAULT '0' NOT NULL,
   rl2 int(11) unsigned DEFAULT '0' NOT NULL,
@@ -90,9 +90,9 @@ CREATE TABLE index_section (
 # Table structure for table 'index_grlist'
 #
 CREATE TABLE index_grlist (
-  phash int(11) DEFAULT '0' NOT NULL,
-  phash_x int(11) DEFAULT '0' NOT NULL,
-  hash_gr_list int(11) DEFAULT '0' NOT NULL,
+  phash bigint(20) DEFAULT '0' NOT NULL,
+  phash_x bigint(20) DEFAULT '0' NOT NULL,
+  hash_gr_list bigint(20) DEFAULT '0' NOT NULL,
   gr_list varchar(255) DEFAULT '' NOT NULL,
   uniqid int(11) NOT NULL auto_increment,
   PRIMARY KEY (uniqid),
@@ -108,7 +108,7 @@ CREATE TABLE index_stat_search (
   searchstring varchar(255) DEFAULT '' NOT NULL,
   searchoptions blob,
   tstamp int(11) DEFAULT '0' NOT NULL,
-  feuser_id int(11) unsigned DEFAULT '0' NOT NULL,
+  feuser_id bigint(20) unsigned DEFAULT '0' NOT NULL,
   cookie varchar(32) DEFAULT '' NOT NULL,
   IP varchar(255) DEFAULT '' NOT NULL,
   hits int(11) DEFAULT '0' NOT NULL,
@@ -119,7 +119,7 @@ CREATE TABLE index_stat_search (
 # Table structure for table 'index_debug'
 #
 CREATE TABLE index_debug (
-  phash int(11) DEFAULT '0' NOT NULL,
+  phash bigint(20) DEFAULT '0' NOT NULL,
   debuginfo mediumtext,
   PRIMARY KEY (phash)
 );
