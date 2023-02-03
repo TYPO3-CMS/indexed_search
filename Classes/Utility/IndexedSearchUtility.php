@@ -46,7 +46,13 @@ class IndexedSearchUtility
      */
     public static function md5inthash($stringToHash)
     {
-        return current(unpack('l', pack('l', crc32($stringToHash))));
+        $hash = current(unpack('l', pack('l', crc32($stringToHash))));
+        if($hash === abs($hash)) {
+            $hash = abs($hash) * 10;
+        } else {
+            $hash = abs($hash) * 10 + 1;
+        }
+        return $hash;
     }
 
     /**
