@@ -39,15 +39,20 @@ class IndexedSearchUtility
     }
 
     /**
-     * md5 integer hash
-     * Using 7 instead of 8 just because that makes the integers lower than 32 bit (28 bit) and so they do not interfere with UNSIGNED integers or PHP-versions which has varying output from the hexdec function.
+     * crc32 integer hash
      *
      * @param string $stringToHash String to hash
      * @return int Integer interpretation of the md5 hash of input string.
      */
     public static function md5inthash($stringToHash)
     {
-        return hexdec(substr(md5($stringToHash), 0, 7));
+        $hash = current(unpack('l', pack('l', crc32($stringToHash))));
+        if($hash === abs($hash)) {
+            $hash = abs($hash) * 10;
+        } else {
+            $hash = abs($hash) * 10 + 1;
+        }
+        return $hash;
     }
 
     /**
