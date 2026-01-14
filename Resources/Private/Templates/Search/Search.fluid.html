@@ -17,10 +17,10 @@
             <f:for each="{searchWords}" as="searchWord" key="key">
                 <f:if condition="{key} > 0">
                     <f:then>
-                        <f:translate key="searchFor.{searchWord.operatorLabel}" />&nbsp;<span class="tx-indexedsearch-info-sword-word">{searchWord.sword}</span>
+                        <f:translate domain="indexed_search.messages" key="searchFor.{searchWord.operatorLabel}" />&nbsp;<span class="tx-indexedsearch-info-sword-word">{searchWord.sword}</span>
                     </f:then>
                     <f:else>
-                        <f:translate key="searchFor" />&nbsp;<span class="tx-indexedsearch-info-sword-word">{searchWord.sword}</span>
+                        <f:translate domain="indexed_search.messages" key="searchFor" />&nbsp;<span class="tx-indexedsearch-info-sword-word">{searchWord.sword}</span>
                     </f:else>
                 </f:if>
             </f:for>
@@ -31,7 +31,7 @@
         <f:then>
             <div class="tx-indexedsearch-browsebox">
                 <f:sanitize.html>
-                    <f:translate key="displayResults" arguments="{0: result.pagination.startRecordNumber, 1: result.pagination.endRecordNumber, 2: result.count}" />
+                    <f:translate domain="indexed_search.messages" key="displayResults" arguments="{0: result.pagination.startRecordNumber, 1: result.pagination.endRecordNumber, 2: result.count}" />
                 </f:sanitize.html>
 
                 <!-- render the anchor-links to the sections inside the displayed result rows -->
@@ -45,9 +45,9 @@
                                                                 argumentsToBeExcludedFromQueryString="{0: 'id'}">
                                             <f:if condition="{sectionData.0}">
                                                 <f:then>{sectionData.0}</f:then>
-                                                <f:else><f:translate key="unnamedSection" /></f:else>
+                                                <f:else><f:translate domain="indexed_search.messages" key="unnamedSection" /></f:else>
                                             </f:if>
-                                            &nbsp;({sectionData.1}&nbsp;<f:translate key="{f:if(condition: '{sectionData.1} > 1', then: 'result.pages', else: 'result.page')}" />)
+                                            &nbsp;({sectionData.1}&nbsp;<f:translate domain="indexed_search.messages" key="{f:if(condition: '{sectionData.1} > 1', then: 'result.pages', else: 'result.page')}" />)
                                         </f:link.page>
                                     </td>
                                 </tr>
@@ -62,7 +62,7 @@
                 <f:if condition="{row.isSectionHeader}">
                     <f:then>
                     <div id="anchor_{row.sectionId}" class="tx-indexedsearch-sectionhead">
-                        <h2 class="tx-indexedsearch-title"><f:format.html>{row.sectionTitle}</f:format.html> <span class="tx-indexedsearch-result-count">{row.numResultRows} <f:translate key="{f:if(condition: '{row.numResultRows} > 1', then: 'result.pages', else: 'result.page')}" /></span></h2>
+                        <h2 class="tx-indexedsearch-title"><f:format.html>{row.sectionTitle}</f:format.html> <span class="tx-indexedsearch-result-count">{row.numResultRows} <f:translate domain="indexed_search.messages" key="{f:if(condition: '{row.numResultRows} > 1', then: 'result.pages', else: 'result.page')}" /></span></h2>
                     </div>
                     </f:then>
                     <f:else>
@@ -76,7 +76,7 @@
         </f:then>
         <f:else>
             <div class="tx-indexedsearch-info-noresult">
-                <f:translate key="result.noResult" />
+                <f:translate domain="indexed_search.messages" key="result.noResult" />
             </div>
         </f:else>
     </f:if>

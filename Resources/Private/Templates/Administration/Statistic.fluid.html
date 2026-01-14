@@ -8,14 +8,14 @@
 <f:layout name="Module" />
 
 <f:section name="Content">
-    <h1><f:translate key="administration.statistic.headline" /></h1>
+    <h1><f:translate domain="indexed_search.messages" key="administration.statistic.headline" /></h1>
     <f:if condition="{tree}">
         <f:then>
             <f:form name="statistic" action="statistic" arguments="{id:pageUid}">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="mode" class="form-label">
-                            <f:translate key="LLL:EXT:indexed_search/Resources/Private/Language/locallang.xlf:administration.moduleFunctions.mode" />
+                            <f:translate domain="indexed_search.messages" key="administration.moduleFunctions.mode" />
                         </label>
                         <f:form.select class="form-select" id="mode" name="mode" options="{
                             overview:'{f:translate(key:\'administration.statistics.view.overview\')}',
@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group">
                         <label for="depth" class="form-label">
-                            <f:translate key="LLL:EXT:indexed_search/Resources/Private/Language/locallang.xlf:administration.moduleFunctions.depth" />
+                            <f:translate domain="indexed_search.messages" key="administration.moduleFunctions.depth" />
                         </label>
                         <f:form.select class="form-select" id="depth" name="depth" options="{levelTranslations}" value="{depth}" additionalAttributes="{data-global-event='change', data-action-submit: '$form'}" />
                     </div>
@@ -35,38 +35,38 @@
                     <thead>
                         <tr>
                             <th class="col-title-flexible">
-                                <f:translate key="field.pageTitle" />
+                                <f:translate domain="indexed_search.messages" key="field.pageTitle" />
                             </th>
                             <th class="col-title-flexible">
-                                <f:translate key="field.fileName" />
+                                <f:translate domain="indexed_search.messages" key="field.fileName" />
                             </th>
                             <f:switch expression="{mode}">
                                 <f:case value="content">
                                     <th class="col-title-flexible">
-                                        <f:translate key="field.content" />
+                                        <f:translate domain="indexed_search.messages" key="field.content" />
                                     </th>
                                     <f:if condition="{extensionConfiguration.useMysqlFulltext} == false">
                                         <th class="col-title-flexible">
-                                            <f:translate key="field.words" />
+                                            <f:translate domain="indexed_search.messages" key="field.words" />
                                         </th>
                                     </f:if>
                                 </f:case>
                                 <f:defaultCase>
                                     <f:if condition="{extensionConfiguration.useMysqlFulltext} == false">
                                         <th class="col-min">
-                                            <f:translate key="field.wordCount" />
+                                            <f:translate domain="indexed_search.messages" key="field.wordCount" />
                                         </th>
                                     </f:if>
                                     <th class="col-min">
-                                        <f:translate key="field.fileSize" />
+                                        <f:translate domain="indexed_search.messages" key="field.fileSize" />
                                     </th>
                                     <th class="col-datetime">
-                                        <f:translate key="field.indexed" />
+                                        <f:translate domain="indexed_search.messages" key="field.indexed" />
                                     </th>
                                 </f:defaultCase>
                             </f:switch>
                             <th class="col-control">
-                                <span class="visually-hidden">{f:translate(key: 'LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels._CONTROL_')}</span>
+                                <span class="visually-hidden">{f:translate(key: 'labels._CONTROL_', domain: 'core.core')}</span>
                             </th>
                         </tr>
                     </thead>
@@ -109,7 +109,7 @@
                                                                 {w}{f:if(condition:wordIterator.isLast,then:'',else:', ')}
                                                             </f:for>
                                                             <br><br>
-                                                            <em>{f:translate(key:'administration.statistics.count')}: {f:count(subject:l.allWords)}</em>
+                                                            <em>{f:translate(domain:'indexed_search.messages', key:'administration.statistics.count')}: {f:count(subject:l.allWords)}</em>
                                                         </td>
                                                     </f:if>
                                                 </f:case>
@@ -131,7 +131,7 @@
                                                         <f:link.action
                                                             action="statisticDetails"
                                                             arguments="{pageHash:l.phash}"
-                                                            title="{f:translate(key:'administration.btn.details.title')}"
+                                                            title="{f:translate(domain:'indexed_search.messages', key:'administration.btn.details.title')}"
                                                             class="btn btn-default"
                                                         >
                                                             <core:icon identifier="actions-options" />
@@ -143,7 +143,7 @@
 
                                                         <button
                                                             type="submit"
-                                                            title="{f:translate(key:'administration.removeEntry')}"
+                                                            title="{f:translate(domain:'indexed_search.messages', key:'administration.removeEntry')}"
                                                             class="btn btn-default"
                                                         >
                                                             <core:icon identifier="actions-edit-delete" />
@@ -166,13 +166,13 @@
                                         <f:switch expression="{mode}">
                                             <f:case value="content">
                                                 <td colspan="5">
-                                                    <span class="badge badge-secondary"><f:translate key="administration.notIndexed" /></span>
+                                                    <span class="badge badge-secondary"><f:translate domain="indexed_search.messages" key="administration.notIndexed" /></span>
                                                 </td>
                                             </f:case>
                                             <f:defaultCase>
                                                 <td colspan="3"></td>
                                                 <td>
-                                                    <span class="badge badge-secondary"><f:translate key="administration.notIndexed" /></span>
+                                                    <span class="badge badge-secondary"><f:translate domain="indexed_search.messages" key="administration.notIndexed" /></span>
                                                 </td>
                                                 <td></td>
                                             </f:defaultCase>
@@ -191,17 +191,17 @@
 
                 <button
                     type="submit"
-                    title="{f:translate(key:'administration.removeAllEntries')}"
+                    title="{f:translate(domain:'indexed_search.messages', key:'administration.removeAllEntries')}"
                     class="btn btn-default"
                 >
                     <core:icon identifier="actions-edit-delete" />
-                    <f:translate key="LLL:EXT:indexed_search/Resources/Private/Language/locallang.xlf:administration.removeAllEntries" />
+                    <f:translate domain="indexed_search.messages" key="administration.removeAllEntries" />
                 </button>
             </f:form>
         </f:then>
         <f:else>
             <f:be.infobox
-                message="{f:translate(key:'LLL:EXT:indexed_search/Resources/Private/Language/locallang.xlf:administration.noPageSelected')}"
+                message="{f:translate(domain:'indexed_search.messages', key:'administration.noPageSelected')}"
                 state="{f:constant(name: 'TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::INFO')}"
             />
         </f:else>

@@ -72,22 +72,22 @@ class AdministrationController extends ActionController
             'statistic' => [
                 'controller' => 'Administration',
                 'action' => 'statistic',
-                'label' => $languageService->sL('LLL:EXT:indexed_search/Resources/Private/Language/locallang.xlf:administration.menu.statistic'),
+                'label' => $languageService->translate('administration.menu.statistic', 'indexed_search.messages') ?? '',
             ],
             'pages' => [
                 'controller' => 'Administration',
                 'action' => 'pages',
-                'label' => $languageService->sL('LLL:EXT:indexed_search/Resources/Private/Language/locallang.xlf:administration.menu.pages'),
+                'label' => $languageService->translate('administration.menu.pages', 'indexed_search.messages') ?? '',
             ],
             'externalDocuments' => [
                 'controller' => 'Administration',
                 'action' => 'externalDocuments',
-                'label' => $languageService->sL('LLL:EXT:indexed_search/Resources/Private/Language/locallang.xlf:administration.menu.externalDocuments'),
+                'label' => $languageService->translate('administration.menu.externalDocuments', 'indexed_search.messages') ?? '',
             ],
             'index' => [
                 'controller' => 'Administration',
                 'action' => 'index',
-                'label' => $languageService->sL('LLL:EXT:indexed_search/Resources/Private/Language/locallang.xlf:administration.menu.general'),
+                'label' => $languageService->translate('administration.menu.general', 'indexed_search.messages') ?? '',
             ],
         ];
 
@@ -96,9 +96,7 @@ class AdministrationController extends ActionController
         $menu = $this->componentFactory->createMenu();
         $menu->setIdentifier('IndexedSearchModuleMenu');
         $menu->setLabel(
-            $languageService->sL(
-                'LLL:EXT:backend/Resources/Private/Language/locallang.xlf:moduleMenu.dropdown.label'
-            )
+            $languageService->translate('moduleMenu.dropdown.label', 'backend.messages') ?? ''
         );
 
         $context = '';
@@ -116,7 +114,7 @@ class AdministrationController extends ActionController
 
         $view->addButtonToButtonBar(
             $this->componentFactory->createBackButton($this->backendUriBuilder->buildUriFromRoute('content_status', ['id' => $this->pageUid]))
-                ->setTitle($this->getLanguageService()->sL('LLL:EXT:backend/Resources/Private/Language/locallang.xlf:moduleMenu.dropdown.overview'))
+                ->setTitle($this->getLanguageService()->translate('moduleMenu.dropdown.overview', 'backend.messages') ?? '')
         );
         $view->getDocHeaderComponent()->getMenuRegistry()->addMenu($menu);
         $view->setTitle(
@@ -394,7 +392,7 @@ class AdministrationController extends ActionController
         $view = $this->initializeModuleTemplate($this->request);
         $view->assignMultiple([
             'extensionConfiguration' => $this->indexerConfig,
-            'levelTranslations' => explode('|', $this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.enterSearchLevels')),
+            'levelTranslations' => explode('|', $this->getLanguageService()->translate('labels.enterSearchLevels', 'core.core') ?? ''),
             'tree' => $tree,
             'pageUid' => $this->pageUid,
             'mode' => $mode,

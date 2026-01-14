@@ -8,13 +8,13 @@
         <f:if condition="{pagination.previousPageNumber}">
             <li class="tx-indexedsearch-browselist-next">
                 <a href="#" class="tx-indexedsearch-page-selector" data-prefix="tx_indexedsearch" data-pointer="{pagination.previousPageNumber - 1}" data-free-index-uid="{freeIndexUid}">
-                    <f:translate key="displayResults.previous" />
+                    <f:translate domain="indexed_search.messages" key="displayResults.previous" />
                 </a>
             </li>
         </f:if>
 
         <f:for each="{pagination.allPageNumbers}" as="pageNumber">
-            <f:variable name="pageLabel" value="{f:translate(key: 'displayResults.page')} {pageNumber}" />
+            <f:variable name="pageLabel" value="{f:translate(domain: 'indexed_search.messages', key: 'displayResults.page')} {pageNumber}" />
             <f:if condition="{pageNumber} == {searchParams.pointer + 1}">
                 <f:then>
                     <li><strong><a href="#" class="tx-indexedsearch-page-selector" data-prefix="tx_indexedsearch" data-pointer="{pageNumber - 1}" data-free-index-uid="{freeIndexUid}" aria-current="page">{pageLabel}</a></strong></li>
@@ -28,7 +28,7 @@
         <f:if condition="{pagination.nextPageNumber}">
             <li class="tx-indexedsearch-browselist-next">
                 <a href="#" class="tx-indexedsearch-page-selector" data-prefix="tx_indexedsearch" data-pointer="{pagination.nextPageNumber - 1}" data-free-index-uid="{freeIndexUid}">
-                    <f:translate key="displayResults.next" />
+                    <f:translate domain="indexed_search.messages" key="displayResults.next" />
                 </a>
             </li>
         </f:if>

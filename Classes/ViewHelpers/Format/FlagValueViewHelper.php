@@ -48,17 +48,17 @@ final class FlagValueViewHelper extends AbstractViewHelper
         $content = [];
         if ($flags & 128) {
             $content[] = '<span class="badge badge-secondary">'
-                . htmlspecialchars($languageService->sL('LLL:EXT:indexed_search/Resources/Private/Language/locallang.xlf:administration.flag.128'))
+                . htmlspecialchars($languageService->translate('administration.flag.128', 'indexed_search.messages'))
                 . '</span>';
         }
         if ($flags & 64) {
             $content[] = '<span class="badge badge-secondary">'
-                . htmlspecialchars($languageService->sL('LLL:EXT:indexed_search/Resources/Private/Language/locallang.xlf:administration.flag.64'))
+                . htmlspecialchars($languageService->translate('administration.flag.64', 'indexed_search.messages'))
                 . '</span>';
         }
         if ($flags & 32) {
             $content[] = '<span class="badge badge-secondary">'
-                . htmlspecialchars($languageService->sL('LLL:EXT:indexed_search/Resources/Private/Language/locallang.xlf:administration.flag.32'))
+                . htmlspecialchars($languageService->translate('administration.flag.32', 'indexed_search.messages'))
                 . '</span>';
         }
         return implode(' ', $content);
