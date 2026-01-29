@@ -36,6 +36,7 @@ use TYPO3\CMS\Frontend\Typolink\LinkFactory;
 use TYPO3\CMS\Frontend\Typolink\LinkResult;
 use TYPO3\CMS\Frontend\Typolink\LinkResultInterface;
 use TYPO3\CMS\IndexedSearch\Domain\Repository\IndexSearchRepository;
+use TYPO3\CMS\IndexedSearch\Event\AfterSearchResultSetsAreGeneratedEvent;
 use TYPO3\CMS\IndexedSearch\Lexer;
 use TYPO3\CMS\IndexedSearch\Pagination\SlicePaginator;
 use TYPO3\CMS\IndexedSearch\Type\DefaultOperand;
@@ -213,12 +214,27 @@ class SearchController extends ActionController
             $pageId = $this->request->getAttribute('frontend.page.information')->getId();
             $this->searchRepository->writeSearchStat($pageId, $this->searchWords ?: []);
         }
-        $this->view->assign('resultsets', $resultsets);
         $this->view->assign('searchParams', $searchData);
         $this->view->assign('firstRow', $this->firstRow);
         $this->view->assign('searchWords', array_map([$this, 'addOperatorLabel'], $this->searchWords));
-
+        $resultSets = $this->dispatchAfterSearchResultSetsAreGeneratedEvent($resultsets, $searchData, $this->searchWords);
+        $this->view->assign('resultsets', $resultSets);
         return $this->htmlResponse();
+    }
+
+    /**
+     * Dispatches an event for modifying complete search result sets after search execution.
+     *
+     * @param array<string|int, array<string, mixed>> $resultSets Search result sets keyed by free index UID
+     * @param array<string, mixed> $searchData Search input and resolved search configuration
+     * @param array<int, array<string, mixed>> $searchWords Parsed search words
+     * @return array<string|int, array<string, mixed>> Potentially modified search result sets
+     */
+    protected function dispatchAfterSearchResultSetsAreGeneratedEvent(array $resultSets, array $searchData, array $searchWords): array
+    {
+        $event = new AfterSearchResultSetsAreGeneratedEvent($resultSets, $searchData, $searchWords, $this->view, $this->request);
+        $this->eventDispatcher->dispatch($event);
+        return $event->getResultSets();
     }
 
     /****************************************

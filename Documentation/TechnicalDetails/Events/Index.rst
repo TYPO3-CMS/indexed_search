@@ -12,6 +12,12 @@ PSR 14 events:
 
 *   `BeforeFinalSearchQueryIsExecutedEvent <https://docs.typo3.org/permalink/t3coreapi:beforefinalsearchqueryisexecutedevent>`_
 *   :php:`TYPO3\CMS\IndexedSearch\Event\EnableIndexingEvent`
+*   :php:`TYPO3\CMS\IndexedSearch\Event\AfterSearchResultSetsAreGeneratedEvent`
+
+    Dispatched after all result sets have been built in
+    :php:`TYPO3\CMS\IndexedSearch\Controller\SearchController`.
+    Allows modifying complete result sets, including pagination, rows, section
+    data, and category metadata.
 
 Please refer to chapter `Implementing an event listener in your extension <https://docs.typo3.org/permalink/t3coreapi:eventdispatcherimplementation>`_
 in TYPO3 explained on how to listen to these events.

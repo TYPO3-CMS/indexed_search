@@ -56,50 +56,50 @@ class IndexSearchRepository
 
     /**
      * Sections
-     * formally known as $this->piVars['sections']
+     * formerly known as $this->piVars['sections']
      */
     protected string $sections = '';
 
     /**
      * Search type
-     * formally known as $this->piVars['type']
+     * formerly known as $this->piVars['type']
      */
     protected SearchType $searchType = SearchType::DISTINCT;
 
     /**
      * Language uid
-     * formally known as $this->piVars['lang']
+     * formerly known as $this->piVars['lang']
      */
     protected int $languageUid = 0;
 
     /**
      * Media type
      * Can be either an ENUM backed value or a raw string
-     * formally known as $this->piVars['media']
+     * formerly known as $this->piVars['media']
      */
     protected MediaType|string $mediaType = MediaType::INTERNAL_PAGES;
 
     /**
      * Sort order
-     * formally known as $this->piVars['sort_order']
+     * formerly known as $this->piVars['sort_order']
      */
     protected string $sortOrder = '';
 
     /**
      * Descending sort order flag
-     * formally known as $this->piVars['desc']
+     * formerly known as $this->piVars['desc']
      */
     protected bool $descendingSortOrderFlag = false;
 
     /**
      * Result page pointer
-     * formally known as $this->piVars['pointer']
+     * formerly known as $this->piVars['pointer']
      */
     protected int $resultpagePointer = 0;
 
     /**
      * Number of results
-     * formally known as $this->piVars['result']
+     * formerly known as $this->piVars['result']
      */
     protected int $numberOfResults = 10;
 
@@ -117,7 +117,7 @@ class IndexSearchRepository
 
     /**
      * Flag for exact search count
-     * formally known as $conf['search.']['exactCount']
+     * formerly known as $conf['search.']['exactCount']
      *
      * Continue counting and checking of results even if we are sure
      * they are not displayed in this request. This will slow down your
@@ -128,7 +128,7 @@ class IndexSearchRepository
 
     /**
      * Display forbidden records
-     * formally known as $this->conf['show.']['forbiddenRecords']
+     * formerly known as $this->conf['show.']['forbiddenRecords']
      *
      * enabled through settings.displayForbiddenRecords
      */
