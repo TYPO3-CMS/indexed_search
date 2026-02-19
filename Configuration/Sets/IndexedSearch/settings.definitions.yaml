@@ -24,3 +24,14 @@ settings:
     default: ''
     type: string
     category: indexedsearch
+  indexedsearch.pagination_type:
+    default: 'simple'
+    type: string
+    enum:
+      simple: 'Simple'
+      slidingWindow: 'Sliding window'
+    category: indexedsearch
+  indexedsearch.page_links:
+    default: 10
+    type: int
+    category: indexedsearch

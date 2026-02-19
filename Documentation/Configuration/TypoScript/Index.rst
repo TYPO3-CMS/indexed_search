@@ -183,6 +183,25 @@ the :ref:`settings-editor`.
         If you just want to search in branches of your site, use the possibility
         of searching in levels.
 
+..  _search-pagination-type:
+
+Pagination type
+---------------
+
+..  confval:: pagination_type
+
+    :Type: string (`simple` or `slidingWindow`)
+    :Default: `simple`
+    :Path: plugin.tx_indexedsearch.settings
+
+    Select the pagination implementation for search results:
+
+    *   :typoscript:`simple`: uses :php:`\TYPO3\CMS\Core\Pagination\SimplePagination`
+        and renders all result pages.
+    *   :typoscript:`slidingWindow`: uses
+        :php:`\TYPO3\CMS\Core\Pagination\SlidingWindowPagination` and limits the
+        displayed result pages to :ref:`page_links <search-page-links>`.
+
 ..  _search-page-links:
 
 Page links
@@ -194,7 +213,8 @@ Page links
     :Default: 10
     :Path: plugin.tx_indexedsearch.settings
 
-    The maximum number of result pages is defined here.
+    Defines the maximum number of result pages shown for
+    :typoscript:`pagination_type = slidingWindow`.
 
 Default free index UID list
 ---------------------------

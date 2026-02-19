@@ -12,5 +12,9 @@ plugin.tx_indexedsearch {
 		targetPid =
 		# cat=plugin.tx_indexedsearch/settings; type=string; label=A list of integer which should be root-pages to search from
 		rootPidList =
+		# cat=plugin.tx_indexedsearch/settings; type=options[simple,slidingWindow]; label=Pagination implementation used for search results
+		pagination_type = simple
+		# cat=plugin.tx_indexedsearch/settings; type=integer; label=Maximum number of links shown for sliding window pagination
+		page_links = 10
 	}
 }

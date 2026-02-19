@@ -23,6 +23,7 @@ use Symfony\Component\DependencyInjection\Container;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\EventDispatcher\ListenerProvider;
 use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\Pagination\PaginationInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
@@ -135,5 +136,57 @@ final class SearchControllerTest extends FunctionalTestCase
         self::assertSame($extbaseRequest, $receivedEvent->getRequest());
         self::assertInstanceOf(SlidingWindowPagination::class, $result[-1]['pagination']);
         self::assertInstanceOf(SlidingWindowPagination::class, $result[13]['pagination']);
+    }
+
+    #[Test]
+    public function paginationSettingSwitchesBetweenSimpleAndSlidingWindowPagination(): void
+    {
+        $controller = new class (
+            $this->createMock(Context::class),
+            $this->createMock(IndexSearchRepository::class),
+            $this->createMock(TypoScriptService::class),
+            $this->createMock(Lexer::class),
+            $this->createMock(LinkFactory::class),
+        ) extends SearchController {
+            public function callBuildPagination(array $searchData, array $rows, int $count): PaginationInterface
+            {
+                return $this->buildPagination($searchData, $rows, $count);
+            }
+
+            public function setSettingsForTest(array $settings): void
+            {
+                $this->settings = $settings;
+            }
+        };
+
+        $searchData = [
+            'pointer' => 10,
+            'numberOfResults' => 10,
+        ];
+        $resultRows = array_fill(0, 10, ['item_title' => 'Result']);
+        $resultCount = 200;
+
+        $controller->setSettingsForTest([
+            'pagination_type' => 'simple',
+            'page_links' => 5,
+        ]);
+        $simplePagination = $controller->callBuildPagination($searchData, $resultRows, $resultCount);
+        self::assertInstanceOf(SimplePagination::class, $simplePagination);
+        self::assertCount(20, $simplePagination->getAllPageNumbers());
+
+        $controller->setSettingsForTest([
+            'pagination_type' => 'slidingWindow',
+            'page_links' => 5,
+        ]);
+        $slidingWindowPagination = $controller->callBuildPagination($searchData, $resultRows, $resultCount);
+        self::assertInstanceOf(SlidingWindowPagination::class, $slidingWindowPagination);
+        self::assertSame([9, 10, 11, 12, 13], $slidingWindowPagination->getAllPageNumbers());
+
+        $controller->setSettingsForTest([
+            'pagination_type' => 'invalid',
+        ]);
+        $fallbackPagination = $controller->callBuildPagination($searchData, $resultRows, $resultCount);
+        self::assertInstanceOf(SimplePagination::class, $fallbackPagination);
+        self::assertCount(20, $fallbackPagination->getAllPageNumbers());
     }
 }

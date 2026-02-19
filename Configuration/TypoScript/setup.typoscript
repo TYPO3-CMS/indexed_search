@@ -24,7 +24,8 @@ plugin.tx_indexedsearch {
 		mediaList =
 
 		rootPidList = {$plugin.tx_indexedsearch.settings.rootPidList ?? $indexedsearch.rootPidList}
-		page_links = 10
+		pagination_type = {$plugin.tx_indexedsearch.settings.pagination_type ?? $indexedsearch.pagination_type}
+		page_links = {$plugin.tx_indexedsearch.settings.page_links ?? $indexedsearch.page_links}
 		defaultFreeIndexUidList =
 		exactCount = 0
 
