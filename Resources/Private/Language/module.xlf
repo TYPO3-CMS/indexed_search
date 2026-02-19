@@ -10,7 +10,7 @@
         <source>Search indexing control panel</source>
       </trans-unit>
       <trans-unit id="description">
-        <source>This lets you manage settings for the search indexing engine which is provided by the frontend website. You can see statistics of indexed pages. Indexing must be enabled in the TypoScript.</source>
+        <source>Manage settings for the frontend search indexing engine and monitor statistics of indexed pages. Indexing must be enabled in TypoScript Setup.</source>
       </trans-unit>
     </body>
   </file>
